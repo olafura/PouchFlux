@@ -1,0 +1,18 @@
+{
+  "name": "pouchflux",
+  "version": "0.0.1",
+  "description": "PouchDB flux store",
+  "authors": [
+    "Olafur Arason <olafura@olafura.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olafura/PouchFlux"
+  },
+  "license": "Apache 2.0",
+  "dependencies": {
+    "alt": "^0.14.5",
+    "object-assign": "^2.0.0",
+    "pouchdb": "^3.3.1"
+  }
+}
