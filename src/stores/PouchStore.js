@@ -21,12 +21,15 @@ class PouchStore {
         PouchAction.update(result.rows);
       }
       this.changes = this.db.changes(options).on('change', function(change) {
+        console.log('changes change', change);
         var doc = changes.doc;
         if(doc) { 
           PouchAction.update([doc]);
         }
       }).on('complete', function(info) {
+        console.log('changes complete', info);
       }).on('error', function (err) {
+        console.log('changes error', info);
       });
     }.bind(this);
     if(view) {
@@ -45,7 +48,11 @@ class PouchStore {
 
   put(doc) {
     console.log('put', doc);
-    return this.db.put(doc);
+    this.db.put(doc).then(function(result) {
+        console.log('put result', result);
+    }).catch(function(err) {
+        console.log('put error: ', err);
+    });
   }
 
   update(docs) {
@@ -62,7 +69,11 @@ class PouchStore {
 
   remove(doc) {
     console.log('remove', doc);
-    return this.db.remove(doc);
+    this.db.remove(doc).then(function(result) {
+        console.log('remove result', result);
+    }).catch(function(err) {
+        console.log('remove error: ', err);
+    });
   }
 
   sync(destination) {

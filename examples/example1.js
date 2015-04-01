@@ -10,6 +10,4 @@ class ExampleStore extends PouchStore {
 
 var exampleStore = alt.createStore(ExampleStore);
 
-PouchActions.put({test: 'test1'}).then(function() {
-  exampleStore.getState();
-});
+PouchActions.put({test: 'test1'});
