@@ -54,21 +54,20 @@ var todoStore = alt.createStore(class TodoStore extends PouchStore {
     }
     */
     //this.update(id, { text })
-    PouchActions.put(x)
+    PouchActions.put(doc)
   }
 
-  onToggleComplete(doc) {
-    //var complete = !this.todos[id].complete
-    doc.complete = !doc.complete
-    PouchActions.put(doc);
+  onToggleComplete(id) {
+    var doc = this.docs[id]
+    var complete = !doc.complete
+    var newdoc = merge(doc, { complete })
+    PouchActions.put(newdoc);
     //this.update(id, { complete })
   }
 
   onToggleCompleteAll() {
-    /*
     var complete = !todoStore.areAllComplete()
-    this.updateAll({ complete })
-    */
+    this.onUpdateAll({ complete })
   }
 
   onDestroy(id) {
@@ -86,14 +85,12 @@ var todoStore = alt.createStore(class TodoStore extends PouchStore {
   }
 
   static areAllComplete() {
-    /*
-    var { todos } = this.getState()
-    for (var id in todos) {
-      if (!todos[id].complete) {
+    var { docs } = this.getState()
+    for (var id in docs) {
+      if (!docs[id].complete) {
         return false
       }
     }
-    */
     return true
   }
 })
