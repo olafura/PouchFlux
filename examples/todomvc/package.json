@@ -1,0 +1,31 @@
+{
+  "name": "todomvc-alt",
+  "version": "1.0.0",
+  "description": "Example Flux architecture using alt.",
+  "repository": "https://github.com/goatslacker/alt",
+  "main": "js/app.js",
+  "dependencies": {
+    "object-assign": "^2.0.0",
+    "alt": "^0.14.5",
+    "react": "^0.12.2"
+  },
+  "devDependencies": {
+    "babelify": "^5.0.3",
+    "browserify": "~4.2.2",
+    "local-web-server": "^0.5.18"
+  },
+  "scripts": {
+    "build": "browserify . > js/bundle.js",
+    "serve": "ws",
+    "test": "jest"
+  },
+  "author": "Josh Perez <josh@goatslacker.com>",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "jest": {
+    "rootDir": "./js"
+  }
+}
