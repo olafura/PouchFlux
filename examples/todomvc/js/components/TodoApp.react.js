@@ -65,7 +65,9 @@ var TodoApp = React.createClass({
    */
   _updateAll: function() {
     console.log('getting update');
-    this.setState(getTodoState());
+    var todoState = getTodoState()
+    console.log('todoState', todoState);
+    this.setState(todoState);
   }
 
 });

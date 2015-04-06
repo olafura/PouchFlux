@@ -52,18 +52,16 @@ var todoStore = alt.createStore(class TodoStore extends PouchStore {
     this.onUpdateAll({ complete })
   }
 
-  onDestroy(id) {
-    //delete this.todos[id]
+  onDestroy(key) {
+    this.onRemove(this.docs[key])
   }
 
   onDestroyCompleted() {
-    /*
-    for (var id in this.todos) {
-      if (this.todos[id].complete) {
-        this.onDestroy(id)
+    for (var key in this.docs) {
+      if (this.docs[key].complete) {
+        this.onDestroy(key)
       }
     }
-    */
   }
 
   static areAllComplete() {
