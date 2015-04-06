@@ -60,15 +60,21 @@ class PouchStore {
 
   onUpdateAll(docs) {
     console.log('update', docs);
-    for(var i = 0; i < docs.length; i++) {
-      var doc = docs[i];
-      console.log('doc', doc);
-      var key = doc[this.key];
-      console.log('key', key);
-      if(doc._delete && key in this.docs) {
-        delete this.docs[key];
+    if(Array.isArray(docs)){
+      for(var i = 0; i < docs.length; i++) {
+        var doc = docs[i];
+        console.log('doc', doc);
+        var key = doc[this.key];
+        console.log('key', key);
+        if(doc._delete && key in this.docs) {
+          delete this.docs[key];
+        }
+        this.docs[key] = doc;
       }
-      this.docs[key] = doc;
+    } else {
+      for(var key in this.docs) {
+        this.docs[key] = merge(this.docs[key], docs);
+      }
     }
     console.log('docs', this.docs);
     this.emitChange();
