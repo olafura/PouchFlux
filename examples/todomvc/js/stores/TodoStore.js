@@ -11,24 +11,7 @@ var todoStore = alt.createStore(class TodoStore extends PouchStore {
   constructor() {
     super('todoStore');
     this.bindActions(TodoActions)
-
-    //this.todos = {}
   }
-
-  /*
-  update(id, updates) {
-    if(this.todos[id] && updates){
-      this.todos[id] = merge(this.todos[id], updates)
-      PouchActions.put(this.todos[id]);
-    }
-  }
-
-  updateAll(updates) {
-    for (var id in this.todos) {
-      this.update(id, updates)
-    }
-  }
-  */
 
   onCreate(text) {
     text = text.trim()
@@ -37,7 +20,6 @@ var todoStore = alt.createStore(class TodoStore extends PouchStore {
     }
     // hand waving of course.
     var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36)
-    //this.todos[id] = {
     this.onPut({
       _id: id,
       complete: false,
@@ -45,16 +27,17 @@ var todoStore = alt.createStore(class TodoStore extends PouchStore {
     });
   }
 
-  onUpdateText(doc) {
-    /*
-    var { id, text } = x
+  onUpdateText(x) {
+    var id = x[0]
+    var text = x[1]
+    console.log('id', id);
+    console.log('text', text)
     text = text ? text.trim() : ''
     if (text === '') {
       return false
     }
-    */
-    //this.update(id, { text })
-    PouchActions.put(doc)
+    var newdoc = merge(this.docs[id], { text })
+    PouchActions.put(newdoc)
   }
 
   onToggleComplete(id) {
@@ -62,7 +45,6 @@ var todoStore = alt.createStore(class TodoStore extends PouchStore {
     var complete = !doc.complete
     var newdoc = merge(doc, { complete })
     PouchActions.put(newdoc);
-    //this.update(id, { complete })
   }
 
   onToggleCompleteAll() {
