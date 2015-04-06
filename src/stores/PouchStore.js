@@ -11,26 +11,29 @@ class PouchStore {
     this.bindActions(PouchActions);
     this.docs = {};
     this.db = new PouchDB(name);
+    console.log("db", this.db);
     var options = {
       since: 'now',
       live: true,
       include_docs: true
     };
     var watchChanges = function(result) {
+      console.log('result', result);
       if(result && result.rows) {
-        PouchAction.update(result.rows);
+        var newrows = result.rows.map(function(row){return row.doc});
+        this.onUpdateAll(newrows);
       }
       this.changes = this.db.changes(options).on('change', function(change) {
         console.log('changes change', change);
-        var doc = changes.doc;
+        var doc = change.doc;
         if(doc) { 
-          PouchAction.update([doc]);
+          this.onUpdateAll([doc]);
         }
-      }).on('complete', function(info) {
+      }.bind(this)).on('complete', function(info) {
         console.log('changes complete', info);
-      }).on('error', function (err) {
+      }.bind(this)).on('error', function (err) {
         console.log('changes error', info);
-      });
+      }.bind(this));
     }.bind(this);
     if(view) {
       this.db.query(view, {include_docs: true}).then(watchChanges);
@@ -46,7 +49,7 @@ class PouchStore {
     }
   }
 
-  put(doc) {
+  onPut(doc) {
     console.log('put', doc);
     this.db.put(doc).then(function(result) {
         console.log('put result', result);
@@ -55,19 +58,23 @@ class PouchStore {
     });
   }
 
-  update(docs) {
+  onUpdateAll(docs) {
     console.log('update', docs);
     for(var i = 0; i < docs.length; i++) {
       var doc = docs[i];
+      console.log('doc', doc);
       var key = doc[this.key];
+      console.log('key', key);
       if(doc._delete && key in this.docs) {
         delete this.docs[key];
       }
       this.docs[key] = doc;
     }
+    console.log('docs', this.docs);
+    this.emitChange();
   }
 
-  remove(doc) {
+  onRemove(doc) {
     console.log('remove', doc);
     this.db.remove(doc).then(function(result) {
         console.log('remove result', result);
@@ -76,15 +83,15 @@ class PouchStore {
     });
   }
 
-  sync(destination) {
+  onSync(destination) {
     console.log('sync', this.name, destination);
     PouchDB.sync(this.name, destination);
   }
 
-  createDb(name) {
+  onCreateDb(name) {
   }
 
-  deleteDb(name) {
+  onDeleteDb(name) {
   }
 }
 
