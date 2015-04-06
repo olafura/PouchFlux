@@ -66,10 +66,11 @@ class PouchStore {
         console.log('doc', doc);
         var key = doc[this.key];
         console.log('key', key);
-        if(doc._delete && key in this.docs) {
+        if(doc._deleted && key in this.docs) {
           delete this.docs[key];
+        } else {
+          this.docs[key] = doc;
         }
-        this.docs[key] = doc;
       }
     } else {
       for(var key in this.docs) {
