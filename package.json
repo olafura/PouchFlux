@@ -2,9 +2,7 @@
   "name": "pouchflux",
   "version": "0.0.1",
   "description": "PouchDB flux store",
-  "authors": [
-    "Olafur Arason <olafura@olafura.com>"
-  ],
+  "author": "Olafur Arason <olafura@olafura.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/olafura/PouchFlux"
@@ -15,6 +13,12 @@
     "object-assign": "^2.0.0",
     "pouchdb": "^3.3.1"
   },
+  "keywords": [
+    "flux",
+    "pouchdb",
+    "react",
+    "database"
+  ],
   "devDependencies": {
     "memdown": "^1.0.0"
   }
