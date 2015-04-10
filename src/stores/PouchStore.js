@@ -1,4 +1,5 @@
 /* vim :set ts=2 sw=2 sts=2 et : */
+"use strict";
 var alt = require('../alt');
 var merge = require('object-assign');
 var PouchDB = require('pouchdb');
@@ -6,12 +7,14 @@ var PouchDB = require('pouchdb');
 var PouchActions = require('../actions/PouchActions');
 
 class PouchStore {
-  constructor(name, view, key) {
+  constructor(name, view, key, readyFunc) {
     console.log('constructor', arguments);
     this.bindActions(PouchActions);
     this.docs = {};
     this.db = new PouchDB(name);
+    this.name = name;
     console.log("db", this.db);
+    console.log("name", this.name);
     var options = {
       since: 'now',
       live: true,
@@ -46,6 +49,9 @@ class PouchStore {
       this.key = key;
     } else {
       this.key = '_id';
+    }
+    if(readyFunc) {
+    	readyFunc();
     }
   }
 
