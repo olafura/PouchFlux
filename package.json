@@ -21,6 +21,7 @@
     "database"
   ],
   "devDependencies": {
-    "memdown": "^1.0.0"
+    "memdown": "^1.0.0",
+    "react-debug": "^1.0.0"
   }
 }
