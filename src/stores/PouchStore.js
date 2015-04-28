@@ -17,11 +17,13 @@ class PouchStore {
     this.db = null;
     this.name = null;
     if(name) {
-      this.onChangeName(name, view, key, readyFunc);
+      var args = {name, view, key, readyFunc};
+      this.onChangeName(args);
     }
   }
 
-  onChangeName(name, view, key, readyFunc) {
+  onChangeName(args) {
+    var {name, view, key, readyFunc} = args;
     this.db = new PouchDB(name);
     this.name = name;
     debug('db', this.db);
