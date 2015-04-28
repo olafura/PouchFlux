@@ -5,6 +5,7 @@ var alt = require('../alt');
 class PouchActions {
   constructor() {
     this.generateActions(
+      'changeName',
       'put',
       'updateAll',
       'remove',

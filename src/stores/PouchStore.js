@@ -13,6 +13,14 @@ class PouchStore {
     debug(this, 'constructor', arguments);
     this.bindActions(PouchActions);
     this.docs = {};
+    this.db = null;
+    this.name = null;
+    if(name) {
+      this.onChangeName(name, view, key, readyFunc);
+    }
+  }
+
+  onChangeName(name, view, key, readyFunc) {
     this.db = new PouchDB(name);
     this.name = name;
     debug(this, 'db', this.db);
