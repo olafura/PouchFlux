@@ -1,6 +1,7 @@
 var alt = require('../alt')
+var PouchActions = require('../../../../src/actions/PouchActions');
 
-class TodoActions {
+class TodoActions extends PouchActions {
   constructor() {
     this.generateActions(
       'create',

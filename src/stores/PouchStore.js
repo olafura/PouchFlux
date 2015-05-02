@@ -5,14 +5,11 @@ var Debug = require('debug');
 var debug = Debug('store');
 var PouchDB = require('pouchdb');
 
-var PouchActions = require('../actions/PouchActions');
-
 Debug.enable('store');
 
 class PouchStore {
   constructor(name, view, key, readyFunc) {
     debug('constructor', arguments);
-    this.bindActions(PouchActions);
     this.docs = {};
     this.db = null;
     this.name = null;

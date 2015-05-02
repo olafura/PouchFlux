@@ -16,4 +16,4 @@ class PouchActions {
   }
 }
 
-module.exports = alt.createActions(PouchActions);
+module.exports = PouchActions;

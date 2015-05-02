@@ -2,8 +2,6 @@ var alt = require('../alt');
 var React = require('react');
 var merge = require('object-assign')
 var PouchStore = require('../../../../src/stores/PouchStore');
-var PouchActions = require('../../../../src/actions/PouchActions');
-
 
 var TodoActions = require('../actions/TodoActions')
 
@@ -37,14 +35,14 @@ var todoStore = alt.createStore(class TodoStore extends PouchStore {
       return false
     }
     var newdoc = merge(this.docs[id], { text })
-    PouchActions.put(newdoc)
+    TodoActions.put(newdoc)
   }
 
   onToggleComplete(id) {
     var doc = this.docs[id]
     var complete = !doc.complete
     var newdoc = merge(doc, { complete })
-    PouchActions.put(newdoc);
+    TodoActions.put(newdoc);
   }
 
   onToggleCompleteAll() {
