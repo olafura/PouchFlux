@@ -10,12 +10,11 @@
     "react": "^0.12.2"
   },
   "devDependencies": {
-    "babelify": "^5.0.3",
     "browserify": "~4.2.2",
     "local-web-server": "^0.5.18"
   },
   "scripts": {
-    "build": "browserify . > js/bundle.js",
+    "build": "browserify js/app.js > js/bundle.js",
     "serve": "ws",
     "test": "jest"
   },
