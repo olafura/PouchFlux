@@ -10,9 +10,9 @@
   "main": "src/PouchFlux.js",
   "license": "Apache 2.0",
   "dependencies": {
-    "alt": "^0.14.5",
+    "alt": "~0.16",
     "object-assign": "^2.0.0",
-    "pouchdb": "^3.3.1"
+    "pouchdb": "~3.4"
   },
   "keywords": [
     "flux",
