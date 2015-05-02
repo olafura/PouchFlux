@@ -1,6 +1,6 @@
 {
   "name": "pouchflux",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "PouchDB flux store",
   "author": "Olafur Arason <olafura@olafura.com>",
   "repository": {
