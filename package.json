@@ -1,6 +1,6 @@
 {
   "name": "pouchflux",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "PouchDB flux store",
   "author": "Olafur Arason <olafura@olafura.com>",
   "repository": {
@@ -22,6 +22,7 @@
   ],
   "devDependencies": {
     "debug": "^2.1.3",
-    "memdown": "^1.0.0"
+    "memdown": "^1.0.0",
+    "es3ify": "~0.1.3"
   }
 }
