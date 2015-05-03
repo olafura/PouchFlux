@@ -61,7 +61,7 @@ class PouchStore {
       this.key = '_id';
     }
     if(readyFunc) {
-    	readyFunc();
+      readyFunc();
     }
   }
 

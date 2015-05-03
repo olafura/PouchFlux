@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 class PouchActions {
   constructor() {
@@ -10,7 +10,7 @@ class PouchActions {
       'sync',
       'createDb',
       'deleteDb'
-    )
+    );
   }
 }
 
