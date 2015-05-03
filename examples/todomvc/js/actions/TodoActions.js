@@ -1,5 +1,5 @@
 var alt = require('../alt')
-var PouchActions = require('../../../../src/actions/PouchActions');
+var PouchActions = require('../../../../src/PouchActions');
 
 class TodoActions extends PouchActions {
   constructor() {

@@ -1,7 +1,7 @@
 var alt = require('../alt');
 var React = require('react');
 var merge = require('object-assign')
-var PouchStore = require('../../../../src/stores/PouchStore');
+var PouchStore = require('../../../../src/PouchStore');
 
 var TodoActions = require('../actions/TodoActions')
 

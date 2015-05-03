@@ -1,7 +1,5 @@
 "use strict";
 
-var alt = require('../alt');
-
 class PouchActions {
   constructor() {
     this.generateActions(
