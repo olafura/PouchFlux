@@ -97,6 +97,9 @@ class PouchStore {
         }
       }
       debug('docs', this.docs);
+      if(this.processDocs) {
+        this.processDocs();
+      }
       this.emitChange();
     }
   }
