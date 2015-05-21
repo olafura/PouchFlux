@@ -2,10 +2,8 @@
 
 var merge = require('object-assign');
 var Debug = require('debug');
-var debug = Debug('store');
+var debug = Debug('pouchflux:store');
 var PouchDB = require('pouchdb');
-
-Debug.enable('store');
 
 class PouchStore {
   constructor(name, view, key, readyFunc) {
