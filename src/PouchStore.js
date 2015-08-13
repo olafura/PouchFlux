@@ -4,6 +4,7 @@ var merge = require('object-assign');
 var Debug = require('debug');
 var debug = Debug('pouchflux:store');
 var PouchDB = require('pouchdb');
+PouchDB.adapter('socket', require('socket-pouch/client'));
 
 class PouchStore {
   constructor(name, view, key, readyFunc) {
@@ -19,7 +20,7 @@ class PouchStore {
 
   onChangeName(args) {
     var {name, view, key, readyFunc} = args;
-    this.db = new PouchDB(name);
+    this.db = new PouchDB(name, {ajax: {cache: true}});
     this.name = name;
     debug('db', this.db);
     debug('name', this.name);
@@ -113,10 +114,15 @@ class PouchStore {
     }
   }
 
-  onSync(destination) {
-    debug('sync', this.name, destination);
+  onSync(args) {
+    var {destination, options} = args;
+    debug('sync', this.name, destination, options);
     if(this.db) {
-      PouchDB.sync(this.name, destination);
+      if(options) {
+        PouchDB.sync(this.name, destination, options);
+      } else {
+        PouchDB.sync(this.name, destination);
+      }
     }
   }
 
